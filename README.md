@@ -31,4 +31,4 @@ A "persistable URL" is just a URL which instead of using the "file" scheme and a
 
 This playground provides a URL extension to freely convert between ordinary path-based file URLs and these persistable URLs.
 
-Is this all a good idea? I'm not sure. It may be poor substitute for Cocoa's file bookmarks. Or maybe it's better in some cases.
+Is this all a good idea? I'm not sure. It may be poor substitute for [Cocoa's file bookmarks](https://developer.apple.com/library/content/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/AccessingFilesandDirectories/AccessingFilesandDirectories.html#//apple_ref/doc/uid/TP40010672-CH3-SW10). Or maybe it's better in some cases.
