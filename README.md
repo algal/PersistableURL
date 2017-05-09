@@ -10,7 +10,20 @@ But no, child, you cannot! From time to time iOS will change the absolute path o
 
 So what your app really needs to remember is the _semantic prefix_ of the path (which will be one of a few standard directories like caches, user documents, application support, or bundle resources) as well as the actual custom suffix path to your resource. 
 
-This is a less convenient thing to keep track of. Do you define a struct containing a custom enum for the prefix and a String for the path suffix? Seems less handy than a plain old URL.
+This is a less convenient thing to keep track of. Do you define a struct containing a custom enum for the prefix and a String for the path suffix? Something like:
+
+```swift
+struct FileLocation {
+  enum StandardDirectory {
+    case documents, caches, appSupport
+  }
+
+  var prefix:StandardDirectory
+  var pathSuffix:String
+}
+```
+
+Goodness, this is getting complicated. All just to remember where a file is. Seems less handy than a plain old URL.
 
 What to do? Behold, persistable URLs!
 
