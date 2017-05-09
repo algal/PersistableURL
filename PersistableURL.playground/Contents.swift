@@ -15,20 +15,20 @@ import UIKit
 
  1. whether the user can modify their contents directly
  2. whether they will be backed up to iTunes or iCloud
- 3. whether iOS guarantees it will preserve their contents across runs of your app, or how aggressively it will try to erase their contents.
+ 3. whether iOS guarantees it will preserve their contents across launches of your app, or how aggressively it will try to erase their contents.
  
  All of the policy is described in [Apple's File System Programming Guide](https://developer.apple.com/library/content/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/FileSystemOverview/FileSystemOverview.html), notably in the sections _Where You Should Put Your App's Files_ and in _iOS Standard Directories_. But it's still confusing.
  
- The type `StandardDirectoryProvider` has static variables that provide URLs to all the key locations, with copious plain English comments describing what they're good for. It provides the storage locations, as well as the read-only location of the main bundle's resources directory. (Access to framework bundles is not supproted.)
+ The type `StandardDirectoryProvider` has static variables that provide URLs to all the key locations, with copious plain English comments describing what they're good for. It provides the storage locations, as well as the read-only location of the main bundle's resources directory. (Access to framework bundles is not supported.)
  
  ## Persistable URL
  
 
- The second problem is how to persist these URLs so they remain valid across launches.  Normal path-based URLs use the "file" scheme and contain an absolute file system path. But the absolute paths of all these locations _change across launches of your app_.
+ The second problem is how to persist these URLs so they remain valid across launches.  Normal path-based URLs use the "file" scheme and contain an absolute file system path. But the absolute paths of all these locations _can change across launches of your app_.
  
  So if you are using the filesystem in order to save a file before your app quits and then load the file when it's running again, then you cannot save the location of a file by saving the path-based URL that points to the file.
 
- So to remember how to find a file, you need to remember the _semantic prefix_ of its path (caches, application support, documents, bundle, etc.), and the suffix of its path. The type PersistableURL does that. Internally, it uses a URL with a customs schemes corresponding to the various standard directories.
+ So to remember how to find a file, you need to remember the _semantic prefix_ of its path (caches, application support, documents, bundle, etc.), and the suffix of its path. The type PersistableURL does that. Internally, it uses a URL with custom schemes corresponding to the various standard directories. Alternatively, you can just use plain `URL` values with those custom schemes.
 
  */
 
